@@ -1,5 +1,4 @@
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
 /*
  * Set up the objects (a.k.a. services) to be used throughout
@@ -9,6 +8,8 @@ var app = builder.Build();
  * using MVC framework and Razor view engine.
  */
 builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
 
 /*
  * Display details of the exceptions which occur in the application.
