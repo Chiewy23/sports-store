@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using SportsStore.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 /*
  * Set up the objects (a.k.a. services) to be used throughout
@@ -8,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
  * using MVC framework and Razor view engine.
  */
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<StoreDbContext>(opts => {
+	opts.UseSqlServer(
+		config["ConnectionStrings:SportsStoreConnection"]
+	);
+});
 
 var app = builder.Build();
 
