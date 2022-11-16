@@ -18,6 +18,13 @@ builder.Services.AddDbContext<StoreDbContext>(opts => {
 	);
 });
 
+/*
+ * Create a service for the IStoreRepository interface
+ * which uses EFStoreRepository as the implementation
+ * class.
+ */
+builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+
 var app = builder.Build();
 
 /*

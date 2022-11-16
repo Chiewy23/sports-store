@@ -7,6 +7,14 @@
 			this.context = context;
 		}
 
+		/*
+		 * Maps the products property defined by the IStoreRepository 
+		 * interface onto the Products property defined by the StoreDbContext
+		 * class.
+		 * 
+		 * The Products property in the context class returns a DbSet<Product>
+		 * object, which implements the IQueryable<T> interface.
+		 */
 		public IQueryable<Product> Products => this.context.Products;
 	}
 }
