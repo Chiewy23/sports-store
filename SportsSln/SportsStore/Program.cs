@@ -53,4 +53,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
 
+SeedData.EnsurePopulated(app);
+
 app.Run();
