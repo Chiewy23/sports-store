@@ -42,7 +42,7 @@ namespace SportsStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(8, 2");
+                        .HasColumnType("decimal(8, 2)");
 
                     b.HasKey("ProductID");
 

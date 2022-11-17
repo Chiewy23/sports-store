@@ -11,7 +11,7 @@ using SportsStore.Models;
 namespace SportsStore.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20221116151404_Initial")]
+    [Migration("20221117154006_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -45,7 +45,7 @@ namespace SportsStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(8, 2");
+                        .HasColumnType("decimal(8, 2)");
 
                     b.HasKey("ProductID");
 
