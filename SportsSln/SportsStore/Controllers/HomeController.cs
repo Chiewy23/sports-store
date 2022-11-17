@@ -4,6 +4,7 @@ using SportsStore.Models;
 namespace SportsStore.Controllers {
 	public class HomeController : Controller {
 		private readonly IStoreRepository repository;
+		private readonly int pageSize = 4;
 
 		/**
 		 * When ASP.NET Core creates a new instance of the HomeController
@@ -21,6 +22,10 @@ namespace SportsStore.Controllers {
 			this.repository = repository;
 		}
 
-		public IActionResult Index() => View(repository.Products);
+		public IActionResult Index(int productPage = 1) 
+			=> View(repository.Products
+				.OrderBy(p => p.ProductID)
+				.Skip((productPage - 1) * pageSize)
+				.Take(pageSize));
 	}
 }
