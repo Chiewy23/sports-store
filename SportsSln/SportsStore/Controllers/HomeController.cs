@@ -4,7 +4,7 @@ using SportsStore.Models;
 namespace SportsStore.Controllers {
 	public class HomeController : Controller {
 		private readonly IStoreRepository repository;
-		private readonly int pageSize = 4;
+		public int pageSize = 4;
 
 		/**
 		 * When ASP.NET Core creates a new instance of the HomeController
