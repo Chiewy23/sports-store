@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SportsStore.Controllers;
 using SportsStore.Models;
+using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Tests;
 
@@ -21,10 +22,10 @@ public class HomeControllerTests
         var controller = new HomeController(mock.Object);
 
         // Act
-        var result = (controller.Index() as ViewResult)?.ViewData.Model as IEnumerable<Product>;
+        var result = (controller.Index() as ViewResult)?.ViewData.Model as ProductsListViewModel;
 
         // Assert
-        var prodArray = result?.ToArray();
+        var prodArray = result?.Products.ToArray();
         Assert.True(prodArray?.Length == 2);
         Assert.Equal("P1", prodArray[0].Name);
 		Assert.Equal("P2", prodArray[1].Name);
@@ -43,14 +44,15 @@ public class HomeControllerTests
 			}).AsQueryable<Product>()
 		);
 
-		var controller = new HomeController(mock.Object);
-		controller.pageSize = 3;
+		var controller = new HomeController(mock.Object) {
+			PageSize = 3
+		};
 
 		// Act
-		var result = (controller.Index(2) as ViewResult)?.ViewData.Model as IEnumerable<Product>;
+		var result = (controller.Index(2) as ViewResult)?.ViewData.Model as ProductsListViewModel;
 
 		// Assert
-		var prodArray = result?.ToArray();
+		var prodArray = result?.Products.ToArray();
 		Assert.True(prodArray?.Length == 2);
 		Assert.Equal("P4", prodArray[0].Name);
 		Assert.Equal("P5", prodArray[1].Name);
