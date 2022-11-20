@@ -1,13 +1,21 @@
 ﻿@model ProductsListViewModel
 
 @foreach (var product in Model.Products) {
-	<div>
-		<h3>@product.Name</h3>
+	<div class="card card-outline-primary m-1 p-1">
+		<div class="bg-faded p-1">
+			<h3>
+				@product.Name
+				<span class="badge badge-pill badge-primary" style="float: right">
+					<small>@product.Price.ToString()</small>
+				</span>
+			</h3>
+		</div>
 
-		<p>@product.Description</p>
-
-		<h4>@product.Price.ToString("c")</h4>
+		<div class="card-text p-1">@product.Description</div>
 	</div>
 }
 
-<div page-model="@Model.PagingInfo" page-action="Index"></div>
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+	page-class="btn" page-class-normal="btn-outline-dark"
+	page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
