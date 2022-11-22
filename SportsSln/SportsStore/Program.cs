@@ -55,8 +55,18 @@ app.UseRouting();
 app.UseEndpoints(endpoints => {
 	// The ASP.NET Core routing feature makes it easy to change the URL scheme in an application.
 	// This creates URLs which are more appealing to the user by following a more intuitive pattern.
-	// Thus, it goes from: http://localhost/?productPage=2 to http://localhost/Page2
-	endpoints.MapControllerRoute("pagination", "Products/Page{productPage}", new { Controller = "Home", action = "Index"});
+	// For example: http://localhost/?productPage=2 becomes http://localhost/Page2
+
+	/*
+	 * /				List the first page of products from all categories.
+	 * /Page2			Lists the specified page, showing items from all categories.
+	 * /Soccer			Shows the first page of items from a specific category.
+	 * /Soccer/Page2	Shows the specified page of items from the specified category.
+	 */
+	endpoints.MapControllerRoute("catpage", "{category}/Page{productPage:int}", new { Controller = "Home", action = "Index" });
+	endpoints.MapControllerRoute("page", "Page{productPage:int}", new { Controller = "Home", action = "Index", productPage = 1 });
+	endpoints.MapControllerRoute("category", "{category}", new { Controller = "Home", action = "Index", productPage = 1 });
+	endpoints.MapControllerRoute("pagination", "Products/Page{productPage}", new { Controller = "Home", action = "Index", productPage = 1 });
 	endpoints.MapDefaultControllerRoute();
 });
 
