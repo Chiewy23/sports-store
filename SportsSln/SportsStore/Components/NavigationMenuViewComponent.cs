@@ -23,6 +23,8 @@ namespace SportsStore.Components {
 		 * be passed to a view alongside the view model object.
 		 */
 		public IViewComponentResult Invoke() {
+			// The 'SelectedCategory' property is dynamically
+			// assigned to the ViewBag object.
 			ViewBag.SelectedCategory = RouteData?.Values["category"];
 			return View(repository.Products
 				.Select(p => p.Category)
