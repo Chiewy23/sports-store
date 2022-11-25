@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
-using System.ComponentModel;
 
 namespace SportsStore.Controllers {
 	public class HomeController : Controller {
