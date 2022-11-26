@@ -69,6 +69,8 @@ app.UseEndpoints(endpoints => {
 	endpoints.MapControllerRoute("category", "{category}", new { Controller = "Home", action = "Index", productPage = 1 });
 	endpoints.MapControllerRoute("pagination", "Products/Page{productPage}", new { Controller = "Home", action = "Index", productPage = 1 });
 	endpoints.MapDefaultControllerRoute();
+
+	// Registers Razor Pages as endpoints which the URL routing system uses to handle requests.
 	endpoints.MapRazorPages();
 });
 
