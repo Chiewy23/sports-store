@@ -27,6 +27,12 @@ builder.Services.AddDbContext<StoreDbContext>(opts => {
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 builder.Services.AddRazorPages();
 
+// Session state is data associated with a series of requests made by a user.
+// ASP.NET provides a range of different ways to store session state, including storing
+// in memory (the approach used in this project.
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 /*
@@ -46,6 +52,12 @@ app.UseStatusCodePages();
  * Enables support for serving static content from the wwwroot folder.
  */
 app.UseStaticFiles();
+
+/*
+ * Automatically associate requests with sessions when they arrive
+ * from the client.
+ */
+app.UseSession();
 
 /*
  * These two methods add the endpoint routing feature to the request
