@@ -14,6 +14,18 @@
 				line.Quantity += quantity;
 			}
 		}
+
+		public void RemoveLine(Product product) {
+			Lines.RemoveAll(x => x.Product.ProductID == product.ProductID);
+		}
+
+		public decimal ComputeTotalValue() {
+			return Lines.Sum(x => x.Product.Price * x.Quantity);
+		}
+
+		public void Clear() {
+			Lines.Clear();
+		}
 	}
 
 	public class CartLine {
