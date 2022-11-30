@@ -3,10 +3,8 @@
 <div class="card card-outline-primary m-1 p-1">
 	<div class="bg-faded p-1">
 		<h4>
-		@Model.Name
-			<span class="badge badge-pill badge-primary" style="float: right">
-				<small>@Model.Price.ToString("c")</small>
-			</span>
+			@Model.Name
+			<span class="badge bg-primary" style="float:right">@Model.Price.ToString("c")</span>
 		</h4>
 	</div>
 	<form id="@Model.ProductID" asp-page="/Cart" method="post">
