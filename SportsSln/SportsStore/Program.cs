@@ -33,7 +33,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
+// The AddScoped method specifies that the same object should be used to satisfy
+// related requests for Cart instances. This means any Cart required by components
+// handling the same HTTP request will receive the same object.
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
+// Specifies the same object should always be used.
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
