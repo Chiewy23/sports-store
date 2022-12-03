@@ -6,7 +6,7 @@ using SportsStore.Models;
 namespace SportsStore.Pages
 {
     /*
-     * The class associated with a Razor page is known is known as its page model class.
+     * The class associated with a Razor page is known as its page model class.
      * It defines the handler methods which are invoked for different types of HTTP requests;
      * these update state before rendering the view.
      * 
@@ -19,30 +19,22 @@ namespace SportsStore.Pages
     {
         private readonly IStoreRepository repository;
 
-        public CartModel(IStoreRepository repo) {
-            repository = repo;
-        }
+		public Cart? Cart { get; set; }
+		public string? ReturnUrl { get; set; }
 
-        public Cart? Cart { get; set; }
-        public string? ReturnUrl { get; set; }
+		public CartModel(IStoreRepository repo, Cart cartService) {
+            repository = repo;
+            Cart = cartService;
+        }
 
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         public IActionResult OnPost(long productId, string returnUrl) {
             var product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
-
-            if (product == null) {
-                return RedirectToPage(returnUrl);
-            }
-            
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             Cart.AddItem(product, 1);
-
-            HttpContext.Session.SetJson("cart", Cart);
 
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
