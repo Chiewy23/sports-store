@@ -25,6 +25,7 @@ builder.Services.AddDbContext<StoreDbContext>(opts => {
  * class.
  */
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 builder.Services.AddRazorPages();
 
 // Session state is data associated with a series of requests made by a user.
