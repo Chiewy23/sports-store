@@ -40,5 +40,22 @@ namespace SportsStore.Tests {
 			Assert.True(string.IsNullOrEmpty(result.ViewName));
 			Assert.False(result.ViewData.ModelState.IsValid);
 		}
+
+		[Fact]
+		public void CanCheckoutAndSubmitOrder() {
+			// Arrange
+			var mock = new Mock<IOrderRepository>();
+			var cart = new Cart();
+			cart.AddItem(new Product(), 1);
+
+			var target = new OrderController(mock.Object, cart);
+
+			// Act
+			var result = target.Checkout(new Order()) as RedirectToPageResult;
+
+			// Assert
+			mock.Verify(x => x.SaveOrder(It.IsAny<Order>()), Times.Once);
+			Assert.Equal("/Completed", result.PageName);
+		}
 	}
 }
