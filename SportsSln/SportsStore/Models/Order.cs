@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace SportsStore.Models {
 	public class Order {
 		[BindNever]
-		public int OrderID { get; set; }
+		public int OrderID { get; private set; }
+
 		[BindNever]
+		[ValidateNever]
 		public ICollection<CartLine> Lines { get; set; }
 
 		[Required(ErrorMessage = "Please enter a name")]
