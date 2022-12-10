@@ -42,6 +42,9 @@ builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 // Specifies the same object should always be used.
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+// Create the services which Blazor uses.
+builder.Services.AddServerSideBlazor();
+
 var app = builder.Build();
 
 /*
@@ -93,6 +96,10 @@ app.UseEndpoints(endpoints => {
 
 	// Registers Razor Pages as endpoints which the URL routing system uses to handle requests.
 	endpoints.MapRazorPages();
+
+	// Register the Blazor middleware components.
+	endpoints.MapBlazorHub();
+	endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 });
 
 SeedData.EnsurePopulated(app);
