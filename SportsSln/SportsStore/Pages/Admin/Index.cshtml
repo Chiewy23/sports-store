@@ -1,0 +1,21 @@
+﻿@page "/admin"
+@{ Layout = null; }
+
+@*
+	Blazor relies on a Razor Page to provide the initial content to the broswer,
+	which includes the JS code connecting to the server and renders the Blazor HTMl
+	content.
+*@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SportsStore Admin</title>
+		<link href="/lib/twitter-bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
+		<base href="/" />
+	</head>
+	<body>
+		<component type="typeof(RouteData)" render-mode="Server" />
+		<script src="/_framework/blazor.server.js"></script>
+	</body>
+</html>
