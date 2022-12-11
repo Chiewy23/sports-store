@@ -5,6 +5,13 @@
 	Blazor relies on a Razor Page to provide the initial content to the broswer,
 	which includes the JS code connecting to the server and renders the Blazor HTMl
 	content.
+
+	Razor components are confusingly named Blazor building blocks.
+
+	The Razor page also contains a script element which tells the browser to load
+	the JS file the Blazor server uses. Requests for this file are intercepted by
+	the Blazor Server middleware, and you don't need to explicitly add the JS
+	file to the project.
 *@
 
 <!DOCTYPE html>
