@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 
@@ -45,6 +46,12 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // Create the services which Blazor uses.
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddDbContext<AppIdentityDbContext>(options => {
+	options.UseSqlServer(config["ConnectionStrings:IdentityConnection"]);
+});
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
+
 var app = builder.Build();
 
 /*
@@ -77,6 +84,10 @@ app.UseSession();
  * features (i.e. endpoints) able to produce responses for them.
  */
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints => {
 	// The ASP.NET Core routing feature makes it easy to change the URL scheme in an application.
 	// This creates URLs which are more appealing to the user by following a more intuitive pattern.
