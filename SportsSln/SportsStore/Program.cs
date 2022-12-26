@@ -114,5 +114,6 @@ app.UseEndpoints(endpoints => {
 });
 
 SeedData.EnsurePopulated(app);
+IdentitySeedData.EnsurePopulated(app);
 
 app.Run();

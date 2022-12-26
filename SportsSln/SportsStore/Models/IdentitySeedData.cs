@@ -18,9 +18,10 @@ namespace SportsStore.Models {
 			var user = await userManager.FindByIdAsync(adminUser);
 
 			if (user == null) {
-				user = new IdentityUser("Admin");
-				user.Email= "admin@example.com";
-				user.PhoneNumber = "555-1234";
+				user = new IdentityUser("Admin") {
+					Email = "admin@example.com",
+					PhoneNumber = "555-1234"
+				};
 
 				await userManager.CreateAsync(user, adminPassword);
 			}
