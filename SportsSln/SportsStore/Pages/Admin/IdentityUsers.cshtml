@@ -1,6 +1,7 @@
 ﻿@page
 @model IdentityUsersModel
 
+@using Microsoft.AspNetCore.Authorization;
 @using Microsoft.AspNetCore.Identity
 
 <h3 class="bg-primary text-white text-center p-2">Admin User</h3>
@@ -23,6 +24,14 @@
 </table>
 
 @functions {
+	/*
+	 * After configuring ASP.NET Core Identity, we can apply an authorization policy to the parts
+	 * of the application we want to protect.
+	 * 
+	 * The basic authorization policy allows access to any authenticated user.
+	 */
+
+	[Authorize]
 	public class IdentityUsersModel : PageModel {
 		private UserManager<IdentityUser> userManager;
 
